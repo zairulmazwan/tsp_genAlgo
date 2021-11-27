@@ -13,4 +13,3 @@ public class CompareFitness implements java.util.Comparator {
 }
 
 
-

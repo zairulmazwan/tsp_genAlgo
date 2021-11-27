@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.text.DecimalFormat;
 import java.util.Random;
 
+
 public class Data {
 	
 	
@@ -64,7 +65,7 @@ public class Data {
 				
 			int i=0, j=0;
 			res = new double [row][col]; //set the size of the array after we have known the row and col
-			System.out.println(col+" "+row);
+			//System.out.println(col+" "+row);
 			
 			br = new BufferedReader (new FileReader (fileName)); //this has to be initiated again!
 			
@@ -91,7 +92,7 @@ public class Data {
 	
 	public static void writeData(double [][] d) {
 		
-		String fn = "/Users/zairulmazwan/git/tsp_genAlgo/TSP_GenAlgo/data/data10.csv";
+		String fn = "/Volumes/UBUNTU 20_0/Backup - HP/TSP_Data/data10.csv";
 		
 		try {
 			
@@ -114,13 +115,39 @@ public class Data {
 			System.err.print("Error");
 		}
 	}
+	
+	public static void writeResult(String file, GeneticAlgo.Population result) {
+		
+		try {
+			FileWriter fw = new FileWriter(file);
+			BufferedWriter bw = new BufferedWriter (fw);
+			
+			for (int i=0; i<result.population.size(); i++) {
+				
+				for (int j=0; j<result.population.get(i).chromosome.size(); j++) {
+					bw.write(Integer.toString(result.population.get(i).chromosome.get(j)));
+					bw.write(" ");
+				}
+				bw.write(Double.toString(result.population.get(i).fitness));
+				bw.newLine();
+			}
+			bw.close();
+			fw.close();
+			
+		}
+		catch(Exception e) {
+			System.err.print("Error");
+		}
+		
+		
+	}
 
 	public static void main(String[] args) {
 		
 		double [][] data = genData(10);
 		//printArray(data);
 		writeData(data);
-		double [][] d = readFile("/Users/zairulmazwan/git/tsp_genAlgo/TSP_GenAlgo/data/data10.csv");
+		double [][] d = readFile("/Volumes/UBUNTU 20_0/Backup - HP/TSP_Data/data10.csv");
 		printArray(d);
 	}
 
