@@ -27,7 +27,6 @@ public class Data {
 				}
 			}
 		}
-		
 		return res;
 	}
 	
@@ -65,6 +64,7 @@ public class Data {
 				
 			int i=0, j=0;
 			res = new double [row][col]; //set the size of the array after we have known the row and col
+			System.out.println(col+" "+row);
 			
 			br = new BufferedReader (new FileReader (fileName)); //this has to be initiated again!
 			
@@ -91,16 +91,19 @@ public class Data {
 	
 	public static void writeData(double [][] d) {
 		
-		String fn = "/Users/zairulmazwan/eclipse-workspace/TSP_GenAlgo/data/data.csv";
+		String fn = "/Users/zairulmazwan/git/tsp_genAlgo/TSP_GenAlgo/data/data10.csv";
 		
 		try {
+			
 			FileWriter fw = new FileWriter(fn);
 			BufferedWriter bw = new BufferedWriter(fw);
-			
+	
 			for (int i=0; i<d.length; i++) {
 				for(int j=0; j<d[i].length; j++) {
+					
 					bw.write(Double.toString(d[i][j]));
-					bw.write(",");
+					
+					if(j!=d[i].length-1) bw.write(","); //however in java, if there is no value after a comma, it will not be counted as length. The if condition might not necessary
 				}
 				bw.newLine();
 			}
@@ -117,9 +120,8 @@ public class Data {
 		double [][] data = genData(10);
 		//printArray(data);
 		writeData(data);
-		double [][] d = readFile("/Users/zairulmazwan/eclipse-workspace/TSP_GenAlgo/data/data.csv");
+		double [][] d = readFile("/Users/zairulmazwan/git/tsp_genAlgo/TSP_GenAlgo/data/data10.csv");
 		printArray(d);
-		System.out.println("col "+d[0].length);
 	}
 
 }
