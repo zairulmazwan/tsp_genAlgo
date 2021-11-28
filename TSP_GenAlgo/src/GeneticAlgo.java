@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashSet;
@@ -8,6 +9,7 @@ import java.util.Set;
 public class GeneticAlgo {
 	
 	static double [][] dataset;
+	static double finalFitness = 0;
 	
 	
 	class Individual{
@@ -196,8 +198,9 @@ public class GeneticAlgo {
 		System.out.println("====Result====");
 		pop.printPop();
 		
-		String fileName = "/Volumes/UBUNTU 20_0/Backup - HP/TSP_Data/results/result.csv";
+		String fileName = "/Users/zairulmazwan/git/tsp_genAlgo/TSP_GenAlgo/data/result.csv";
 		Data.writeResult(fileName, pop);
+		finalFitness = pop.population.get(0).fitness;
 	
 	}
 	
@@ -226,7 +229,11 @@ public class GeneticAlgo {
 		runGA();
 		
 		double [][] mst = MST.PrimsMST(dataset);
+		double mstValue = MST.getMstValue(mst);
 		System.out.println("\nMST fitness : "+MST.getMstValue(mst));
+		DecimalFormat df = new DecimalFormat("#0.00");
+		double resultQuality = (mstValue/finalFitness)*100;
+		System.out.println("The solution is "+(df.format(resultQuality))+"% closer to the mst value.");
 		//Data.printArray(mst);
 
 	}

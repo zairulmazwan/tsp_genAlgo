@@ -5,8 +5,11 @@ public class MST
 	
 	public static void main (String args []) {
 		
-	
-		
+		double [][] dataset = Data.readFile("/Users/zairulmazwan/git/tsp_genAlgo/TSP_GenAlgo/data/data10.csv");
+		double [][] mst = PrimsMST(dataset);
+		System.out.println("MST metrix : ");
+		Data.printArray(mst);
+		System.out.println(getMstValue(mst));
 	}
 
 	
