@@ -140,14 +140,15 @@ public class GeneticAlgo {
 		
 		//create a population object and parameters
 		GeneticAlgo ga = new GeneticAlgo();
-		int chromosomeSize = 10;
-		int numGeneration = 30;
+		//int chromosomeSize = 10;
+		int numGeneration = 10;
 		int popSize = 10;
-		double crossOverRate = 0.3;
+		double crossOverRate = 0.6;
 		
 		//prepare dataset
 		String file = "/Users/zairulmazwan/git/tsp_genAlgo/TSP_GenAlgo/data/data10.csv";
 		dataset = Data.readFile(file);
+		int chromosomeSize = dataset[0].length;
 		//Data.printArray(dataset);
 		
 		//initialise the population
@@ -170,15 +171,15 @@ public class GeneticAlgo {
 			Individual ch1 = pop.crossOver(p1, crossOverRate);
 			Individual ch2 = pop.crossOver(p2, crossOverRate);
 			
-			System.out.println("\nChild 1 : ");
-			ch1.printChromosome();
-			System.out.println("\nChild 2 : ");
-			ch2.printChromosome();
+			//System.out.println("\nChild 1 : ");
+			//ch1.printChromosome();
+			//System.out.println("\nChild 2 : ");
+			//ch2.printChromosome();
 			
 			//get a mutate child
 			Individual ch3 = pop.mutate(p1);
-			System.out.println("\nChild 3 : ");
-			ch3.printChromosome();
+			//System.out.println("\nChild 3 : ");
+			//ch3.printChromosome();
 			System.out.println();
 			//add these new children to the population
 			pop.population.add(ch1);
@@ -189,9 +190,10 @@ public class GeneticAlgo {
 			Collections.sort(pop.population,new CompareFitness()); //sorting the population by fitness (asc)
 			
 			//remove the weak candidate
-			pop.population.remove(popSize-1);
-			pop.population.remove(popSize-2);
-			pop.population.remove(popSize-3);
+			//pop.population.remove(popSize-1);
+			//pop.population.remove(popSize-1);
+			//pop.population.remove(popSize-1);
+			//pop.printPop();
 			
 		}
 		
